@@ -1,0 +1,21 @@
+﻿@using Nb.Common.Themes
+@functions
+{
+    public static string GetCurrentTheme()
+    {
+        var themeManager = ThemeManager.Resolve();
+        var themeName = themeManager.GetTheme();
+        return themeName;
+    }
+}
+
+@helper ShowCurrentTheme()
+{
+    var themeName = GetCurrentTheme();
+    <h2>Current Theme: @themeName</h2>
+}
+
+@helper ShowCurrentPath()
+{
+    <h2>@VirtualPath</h2>
+}

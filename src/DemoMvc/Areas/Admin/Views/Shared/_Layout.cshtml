@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = ViewBag.Title ?? "DemoMvc";
+}
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <title>@ViewBag.Title</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="~/Content/libs/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/libs/jquery/jquery.js"></script>
+    <script src="~/Content/libs/bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+    @DemoHelper.ShowCurrentTheme()
+    <hr />
+    @DemoHelper.ShowCurrentPath()
+    <hr />
+    @Html.Partial("_Nav")
+    <div class="container">
+        @RenderBody()
+    </div>
+    <hr />
+    @Html.Partial("_Footer")
+</body>
+</html>
