@@ -73,6 +73,7 @@
     <Compile Include="ThemeableRazorViewEngine.cs" />
     <Compile Include="ThemeLogger.cs" />
     <Compile Include="ThemeManager.cs" />
+    <Compile Include="UrlHelperExtensions.cs" />
     <Compile Include="WebViewPage.cs" />
   </ItemGroup>
   <ItemGroup>

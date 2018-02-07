@@ -15,6 +15,30 @@ namespace Nb.Common.Themes
             return virtualPath.Replace(_themePlaceholder, themeName);
         }
 
+        public string GetVirtualPathForTheme(string virtualPath)
+        {
+            var theme = _themeManager.GetTheme();
+            if (string.IsNullOrWhiteSpace(theme))
+            {
+                return virtualPath;
+            }
+
+            if (string.IsNullOrWhiteSpace(virtualPath))
+            {
+                throw new ArgumentNullException(virtualPath);
+            }
+            if (!virtualPath.StartsWith("~"))
+            {
+                throw new ArgumentException("virtualPath should start with '~'");
+            }
+
+            //append [~/Themes/#THEME#]
+            //[~/Themes/#THEME#]/{virtualPath}
+            var safeThemeVirtualPath = _themeFolderVirutalPath + '/' + theme;
+            var virtualPathFix = virtualPath.TrimStart('~');
+            return safeThemeVirtualPath + virtualPathFix;
+        }
+
         #endregion
 
         private readonly IThemeManager _themeManager;
@@ -63,6 +87,8 @@ namespace Nb.Common.Themes
             ViewLocationFormats = defaultLocationFormats;
             MasterLocationFormats = defaultLocationFormats;
             PartialViewLocationFormats = defaultLocationFormats;
+
+            Current = this;
         }
 
         #region private members
@@ -220,5 +246,11 @@ namespace Nb.Common.Themes
         {
             ThemeLogger.Log(message);
         }
+
+
+        /// <summary>
+        /// current instance
+        /// </summary>
+        public static ThemeableRazorViewEngine Current { get; set; }
     }
 }

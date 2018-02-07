@@ -1,5 +1,9 @@
 ﻿# ThemeableRazorViewEngine
 
+## 20180207 V0.2
+
+add Theme support for virtual path, e.g.: images, css...
+
 ## 20180207 V0.1
 
 basic theme support:
