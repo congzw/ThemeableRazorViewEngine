@@ -18,7 +18,7 @@ namespace Nb.Common.Themes
                 this.WriteLiteral("\r\n<!--End-ViewPath:" + this.VirtualPath + "-->");
             }
         }
-        
+
         private string _themableLayoutValue = null;
         public override string Layout
         {
@@ -80,12 +80,12 @@ namespace Nb.Common.Themes
             //}
             //return base.Href(path, pathParts);
         }
-        
+
         private string ProcessLayout(string layoutPath)
         {
-            var layoutName = Path.GetFileNameWithoutExtension(layoutPath);
+            var layoutName = GuessLayoutName(layoutPath);
             var viewResult = ViewEngines.Engines.FindPartialView(ViewContext.Controller.ControllerContext, layoutName);
-            
+
             var view = viewResult.View as RazorView;
             if (view == null)
             {
@@ -96,8 +96,22 @@ namespace Nb.Common.Themes
             ThemeLogger.Log(string.Format("Process Layout: {0} => {1}", layoutPath, view.ViewPath));
             return view.ViewPath;
         }
+
+        private string GuessLayoutName(string layoutPath)
+        {
+            if (string.IsNullOrWhiteSpace(layoutPath))
+            {
+                return string.Empty;
+            }
+            //fix bugs: "~/Views/Shared/_Unify/_Layout.cshtml" from "_Layout" to "_Unify/_Layout"
+            var lowerLayoutPath = layoutPath.ToLower();
+            var layoutName = Path.GetFileNameWithoutExtension(lowerLayoutPath);
+            var fileName = Path.GetFileName(lowerLayoutPath);
+            var directoryName = lowerLayoutPath.Replace(@"~/views/shared/", "").Replace(fileName, "");
+            return directoryName + layoutName;
+        }
     }
-    
+
     public abstract class WebViewPage : WebViewPage<dynamic>
     {
     }
