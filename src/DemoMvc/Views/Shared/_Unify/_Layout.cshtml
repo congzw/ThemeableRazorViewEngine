@@ -15,8 +15,8 @@
     <div class="wrapper">
         @Html.Partial("_Unify/_Header")
         <div class="container">
-             @Html.Partial("_Nav")
-            <hr/>
+            @DemoHelper.ShowCurrentTheme()
+            @DemoHelper.ShowCurrentPath()
             @RenderBody()
         </div>
 

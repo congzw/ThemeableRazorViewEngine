@@ -1,19 +1,18 @@
 ﻿@{
     var views = new DirectoryInfo(Server.MapPath("~/Views/"));
     var themes = new DirectoryInfo(Server.MapPath("~/Themes/"));
+    var theme = DemoHelper.GetCurrentTheme() ?? "";
 }
 <ul>
-    @*<li>
-        @ShowTree(views)
-    </li>*@
     <li>
-        @ShowTree(themes)
+        @ShowTree(themes, theme)
     </li>
 </ul>
-@helper ShowTree(DirectoryInfo dirInfo)
+@helper ShowTree(DirectoryInfo dirInfo, string theme)
 {
     var folder = (new Uri(Server.MapPath("~/"))).MakeRelativeUri(new Uri(dirInfo.FullName)).ToString();
-    <text>~/@folder</text>
+    <span>~/@folder</span>
+    var isCurrentTheme = !string.IsNullOrWhiteSpace(theme) && folder.IndexOf(theme, StringComparison.OrdinalIgnoreCase) != -1;
     <ul>
         @foreach (FileInfo file in dirInfo.GetFiles())
         {
@@ -21,11 +20,21 @@
             {
                 continue;
             }
-            <li>@Path.GetFileName(file.FullName)</li>
+            
+            var showFileName = Path.GetFileName(file.FullName);
+            
+            if (isCurrentTheme)
+            {
+                <li style="color: red">@showFileName</li>
+            }
+            else
+            {
+                <li>@showFileName</li>
+            }
         }
     </ul>
     foreach (DirectoryInfo directory in dirInfo.GetDirectories())
     {
-        @ShowTree(directory)
+        @ShowTree(directory, theme)
     }
 }
