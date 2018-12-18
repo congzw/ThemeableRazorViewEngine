@@ -1,0 +1,30 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        @Html.Partial("_DemoPartial01")
+        @Html.Partial("_DemoPartial02")
+        @Html.Partial("_DemoPartial03")
+        @Html.Partial("_DemoPartial04")
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <h2>ROOT</h2>
+        <ul>
+            <li><a href="~/Home/Index">Home Index</a></li>
+            <li><a href="~/Home/Index?theme=Theme01">Home Index Theme01</a></li>
+            <li><a href="~/Home/Index?theme=Theme02">Home Index Theme02</a></li>
+            <li><a href="~/Home/NotExit">Home NotExit</a></li>
+        </ul>
+        <h2>AREA</h2>
+        <ul>
+            <li><a href="~/Admin/Home/Index">Admin Home Index</a></li>
+            <li><a href="~/Admin/Home/Index?theme=Theme01">Admin Home Index Theme01</a></li>
+            <li><a href="~/Admin/Home/Index?theme=Theme02">Admin Home Index Theme02</a></li>
+            <li><a href="~/Admin/Home/NotExit">Admin Home NotExit</a></li>
+        </ul>
+    </div>
+    <div class="col-md-8">
+        @Html.Partial("_FileStructrues")
+    </div>
+</div>

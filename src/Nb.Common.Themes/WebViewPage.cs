@@ -104,11 +104,33 @@ namespace Nb.Common.Themes
                 return string.Empty;
             }
             //fix bugs: "~/Views/Shared/_Unify/_Layout.cshtml" from "_Layout" to "_Unify/_Layout"
+            //fix bugs: "~/Areas/Admin/Views/Shared/_Layout.cshtml" from "~/areas/admin/views/shared/_layout" to "_Layout"
             var lowerLayoutPath = layoutPath.ToLower();
             var layoutName = Path.GetFileNameWithoutExtension(lowerLayoutPath);
             var fileName = Path.GetFileName(lowerLayoutPath);
-            var directoryName = lowerLayoutPath.Replace(@"~/views/shared/", "").Replace(fileName, "");
+            //~/areas/admin/views/shared/
+            var areaLower = "";
+            var area = TryGetAreaName(this.ViewContext);
+            if (!string.IsNullOrWhiteSpace(area))
+            {
+                areaLower = area.ToLower();
+            }
+            var directoryName = lowerLayoutPath
+                .Replace(@"~/views/shared/", "")
+                .Replace(string.Format(@"~/areas/{0}/views/shared/", areaLower), "")
+                .Replace(fileName, "");
             return directoryName + layoutName;
+        }
+
+        private static string TryGetAreaName(ViewContext viewContext)
+        {
+            //HttpContext.Current.Request.RequestContext.RouteData.DataTokens["area"]
+            object area;
+            if (viewContext.RouteData.DataTokens.TryGetValue("area", out area))
+            {
+                return area as string;
+            }
+            return null;
         }
     }
 

@@ -257,6 +257,10 @@
     <Content Include="Themes\Theme01\Views\Shared\_Unify\_Layout.cshtml" />
     <Content Include="Themes\Theme01\Views\Shared\_DemoPartial03.cshtml" />
     <Content Include="Themes\Theme02\Views\Shared\_DemoPartial04.cshtml" />
+    <Content Include="Views\Shared\_DemoAll.cshtml" />
+    <Content Include="Themes\Theme02\Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Themes\Theme02\Areas\Admin\Views\web.config" />
+    <Content Include="Themes\Theme02\Areas\Admin\Views\Shared\_DemoPartial01.cshtml" />
     <None Include="Views\Shared\_FileStructrues.cshtml" />
     <Content Include="Views\Shared\_Unify\_Layout.cshtml" />
     <Content Include="Views\Shared\_IEFix.cshtml" />

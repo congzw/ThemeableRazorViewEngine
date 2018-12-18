@@ -2,8 +2,10 @@
 
 ## 20181218 V0.3
 
-fix nested layout bugs: "~/Views/Shared/_Unify/_Layout.cshtml" from "_Layout" to "_Unify/_Layout"
 add some unify demo
+fix nested layout bugs: 
+"~/Views/Shared/_Unify/_Layout.cshtml" from "_Layout" to "_Unify/_Layout"
+"~/Areas/Admin/Views/Shared/_Layout.cshtml" from "~/areas/admin/views/shared/_layout" to "_Layout"
 
 ## 20180207 V0.2
 
@@ -25,6 +27,7 @@ Need a lightweight and simple implementation for themeable RazorViewEngine, easy
 ## todo
 
 [x]basic theme support
+[x]area theme support
 []Theme support for images and css
 []nuget package
 []how to use doc

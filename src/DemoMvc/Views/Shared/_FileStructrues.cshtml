@@ -1,13 +1,15 @@
 ﻿@{
-    var views = new DirectoryInfo(Server.MapPath("~/Views/"));
+    var adminViews = new DirectoryInfo(Server.MapPath("~/Areas/Admin/Views/"));
     var themes = new DirectoryInfo(Server.MapPath("~/Themes/"));
     var theme = DemoHelper.GetCurrentTheme() ?? "";
 }
+
 <ul>
     <li>
         @ShowTree(themes, theme)
     </li>
 </ul>
+
 @helper ShowTree(DirectoryInfo dirInfo, string theme)
 {
     var folder = (new Uri(Server.MapPath("~/"))).MakeRelativeUri(new Uri(dirInfo.FullName)).ToString();
