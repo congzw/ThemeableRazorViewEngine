@@ -1,0 +1,10 @@
+﻿@{
+    var respond = Url.Content("~/Content/libs/unify/plugins/respond.js");
+    var html5shiv = Url.Content("~/Content/libs/unify/plugins/html5shiv.js");
+    var placeholder = Url.Content("~/Content/libs/unify/plugins/placeholder-IE-fixes.js");
+}
+<!--[if lt IE 9]>
+<script src="@respond"></script>
+<script src="@html5shiv"></script>
+<script src="@placeholder"></script>
+<![endif]-->

@@ -1,0 +1,45 @@
+﻿@{
+    var title = ViewBag.Title;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    @UnifyHelper.Head_Meta()
+    <title>@title</title>
+    @UnifyHelper.Head_Css_Global_Compulsory()
+    @UnifyHelper.Head_Css_HeaderAndFooter()
+    @UnifyHelper.Head_Css_Plugins()
+    @UnifyHelper.Head_Css_Theme()
+    <style>
+        div.wrapper {
+            background-image: url('/Content/images/bg_001.gif');
+            background-repeat: repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        @Html.Partial("_Unify/_Header")
+        <div class="container">
+             @Html.Partial("_Nav")
+            <hr/>
+            @RenderBody()
+        </div>
+
+        <div class="footer-v1 sticky-footer">
+            <div class="copyright">
+                <div class="container">
+                    <p class="text-center">
+                        Copyright ©foo group,All Rights Reserved.
+                        <a href="#">Bar</a>&nbsp;|&nbsp;<a href="#">Blah</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/libs/unify/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Content/libs/unify/plugins/jquery/jquery-migrate.min.js"></script>
+    <script src="~/Content/libs/unify/plugins/bootstrap/js/bootstrap.min.js"></script>
+    @Html.Partial("_IEFix")
+</body>
+</html>
