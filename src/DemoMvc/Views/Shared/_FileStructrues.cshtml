@@ -1,0 +1,31 @@
+﻿@{
+    var views = new DirectoryInfo(Server.MapPath("~/Views/"));
+    var themes = new DirectoryInfo(Server.MapPath("~/Themes/"));
+}
+<ul>
+    @*<li>
+        @ShowTree(views)
+    </li>*@
+    <li>
+        @ShowTree(themes)
+    </li>
+</ul>
+@helper ShowTree(DirectoryInfo dirInfo)
+{
+    var folder = (new Uri(Server.MapPath("~/"))).MakeRelativeUri(new Uri(dirInfo.FullName)).ToString();
+    <text>~/@folder</text>
+    <ul>
+        @foreach (FileInfo file in dirInfo.GetFiles())
+        {
+            if (file.FullName.EndsWith(".config"))
+            {
+                continue;
+            }
+            <li>@Path.GetFileName(file.FullName)</li>
+        }
+    </ul>
+    foreach (DirectoryInfo directory in dirInfo.GetDirectories())
+    {
+        @ShowTree(directory)
+    }
+}

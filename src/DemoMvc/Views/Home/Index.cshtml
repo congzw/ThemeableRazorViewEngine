@@ -2,22 +2,10 @@
 
 @{
     ViewBag.Title = "Home";
-    @*var layout = this.Layout;
-    //var viewResult = ViewEngines.Engines.FindView(ViewContext.Controller.ControllerContext, layout, "");
-    var viewResult = ViewEngines.Engines.FindPartialView(this.ViewContext.Controller.ControllerContext, layout);
-    var view = viewResult.View as RazorView;
-    if (view != null)
-    {
-        <h2>Layout Result For Path: @view.ViewPath</h2>
-    }
-
-    var layoutName = Path.GetFileNameWithoutExtension(layout);
-    var viewResult2 = ViewEngines.Engines.FindPartialView(this.ViewContext.Controller.ControllerContext, layoutName);
-    var view2 = viewResult2.View as RazorView;
-    if (view2 != null)
-    {
-        <h2>Layout Result For Name: @view2.ViewPath</h2>
-    }*@
 }
 
-@DemoHelper.ShowCurrentPath()
+<div class="row">
+    <div class="col-md-12">
+        @Html.Partial("_FileStructrues")
+    </div>
+</div>

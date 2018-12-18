@@ -46,6 +46,19 @@
 //        IDependencyScope BeginScope();
 //    }
     
+//    public static class DependencyResolverExtensions
+//    {
+//        public static TService GetService<TService>(this IDependencyResolver resolver)
+//        {
+//            return (TService)resolver.GetService(typeof(TService));
+//        }
+
+//        public static IEnumerable<TService> GetServices<TService>(this IDependencyResolver resolver)
+//        {
+//            return resolver.GetServices(typeof(TService)).Cast<TService>();
+//        }
+//    }
+
 //    internal class EmptyResolver : IDependencyResolver
 //    {
 //        private static readonly IDependencyResolver _instance = new EmptyResolver();
@@ -78,10 +91,11 @@
 //            return Enumerable.Empty<object>();
 //        }
 //    }
-
+    
 //    public class DependencyConfiguraion
 //    {
-//        public DependencyConfiguraion() : this(EmptyResolver.Instance)
+//        public DependencyConfiguraion()
+//            : this(EmptyResolver.Instance)
 //        {
 //        }
 
@@ -90,6 +104,6 @@
 //            DependencyResolver = resolver;
 //        }
 
-//        public IDependencyResolver DependencyResolver { get; private set; } 
+//        public IDependencyResolver DependencyResolver { get; private set; }
 //    }
 //}

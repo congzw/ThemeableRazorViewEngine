@@ -80,6 +80,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\bg_001.gif" />
+    <Content Include="Content\images\bg_003.gif" />
+    <Content Include="Content\images\bg_004.gif" />
+    <Content Include="Content\images\bg_005.gif" />
+    <Content Include="Content\images\bg_002.gif" />
     <Content Include="Content\libs\bootstrap\css\bootstrap.css" />
     <Content Include="Content\libs\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\libs\bootstrap\js\bootstrap.js" />
@@ -130,6 +135,7 @@
     <Content Include="Content\libs\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\libs\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\libs\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Views\Shared\_FileStructrues.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
