@@ -255,6 +255,8 @@
     <Content Include="Content\libs\unify\fonts\open-sans\open-sans\fonts\open-sans600normal.woff" />
     <Content Include="Themes\Theme02\Views\Shared\_Unify\_Layout.cshtml" />
     <Content Include="Themes\Theme01\Views\Shared\_Unify\_Layout.cshtml" />
+    <Content Include="Themes\Theme01\Views\Shared\_DemoPartial03.cshtml" />
+    <Content Include="Themes\Theme02\Views\Shared\_DemoPartial04.cshtml" />
     <None Include="Views\Shared\_FileStructrues.cshtml" />
     <Content Include="Views\Shared\_Unify\_Layout.cshtml" />
     <Content Include="Views\Shared\_IEFix.cshtml" />
