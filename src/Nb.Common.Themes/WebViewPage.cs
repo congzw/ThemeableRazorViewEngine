@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Web.Mvc;
-
-namespace Nb.Common.Themes
+﻿namespace Nb.Common.Themes
 {
     public abstract class WebViewPage<TModel> : System.Web.Mvc.WebViewPage<TModel>
     {
@@ -40,8 +37,7 @@ namespace Nb.Common.Themes
                 {
                     return _themableLayoutValue;
                 }
-
-                _themableLayoutValue = ProcessLayout(layout);
+                _themableLayoutValue = ThemeLayoutHelper.Factory().GetLayoutPath(layout, this.ViewContext);
                 return _themableLayoutValue;
             }
             set
@@ -79,58 +75,6 @@ namespace Nb.Common.Themes
             //    return cdnPath;
             //}
             //return base.Href(path, pathParts);
-        }
-
-        private string ProcessLayout(string layoutPath)
-        {
-            var layoutName = GuessLayoutName(layoutPath);
-            var viewResult = ViewEngines.Engines.FindPartialView(ViewContext.Controller.ControllerContext, layoutName);
-
-            var view = viewResult.View as RazorView;
-            if (view == null)
-            {
-                ThemeLogger.Log(string.Format("Process Layout: {0} => {1}", layoutPath, "EMPTY!"));
-                return string.Empty;
-            }
-
-            ThemeLogger.Log(string.Format("Process Layout: {0} => {1}", layoutPath, view.ViewPath));
-            return view.ViewPath;
-        }
-
-        private string GuessLayoutName(string layoutPath)
-        {
-            if (string.IsNullOrWhiteSpace(layoutPath))
-            {
-                return string.Empty;
-            }
-            //fix bugs: "~/Views/Shared/_Unify/_Layout.cshtml" from "_Layout" to "_Unify/_Layout"
-            //fix bugs: "~/Areas/Admin/Views/Shared/_Layout.cshtml" from "~/areas/admin/views/shared/_layout" to "_Layout"
-            var lowerLayoutPath = layoutPath.ToLower();
-            var layoutName = Path.GetFileNameWithoutExtension(lowerLayoutPath);
-            var fileName = Path.GetFileName(lowerLayoutPath);
-            //~/areas/admin/views/shared/
-            var areaLower = "";
-            var area = TryGetAreaName(this.ViewContext);
-            if (!string.IsNullOrWhiteSpace(area))
-            {
-                areaLower = area.ToLower();
-            }
-            var directoryName = lowerLayoutPath
-                .Replace(@"~/views/shared/", "")
-                .Replace(string.Format(@"~/areas/{0}/views/shared/", areaLower), "")
-                .Replace(fileName, "");
-            return directoryName + layoutName;
-        }
-
-        private static string TryGetAreaName(ViewContext viewContext)
-        {
-            //HttpContext.Current.Request.RequestContext.RouteData.DataTokens["area"]
-            object area;
-            if (viewContext.RouteData.DataTokens.TryGetValue("area", out area))
-            {
-                return area as string;
-            }
-            return null;
         }
     }
 
